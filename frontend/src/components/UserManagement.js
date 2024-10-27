@@ -35,7 +35,7 @@ export const UserManagement = () => {
   };
 
   return (
-    <Container sx={{ marginTop: 4, padding: 4, backgroundColor: "#f4f6f8", borderRadius: 2 }}>
+    <Container sx={{ marginTop: 4, padding: 2, backgroundColor: "#f4f6f8", borderRadius: 2 }}>
       <Typography variant="h4" gutterBottom sx={{ color: "#37474f", fontWeight: "bold" }}>
         User Management
       </Typography>
