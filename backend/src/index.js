@@ -1,11 +1,11 @@
+require('dotenv').config(); 
 const { app } = require('@azure/functions');
 const  mockUsers  = require('./config/database');
 const UserService = require('./services/userService')
 const {ErrorHandler} = require('./middlewares/errorHandler');
 const {RequestParser} = require('./middlewares/requestParser');
-
 const userService = new UserService(mockUsers);
-app.http('getusers-reshape-assessment', {
+app.http(process.env.AZURE_FUNCTION_NAME, {
     methods: ['GET'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
@@ -14,9 +14,6 @@ app.http('getusers-reshape-assessment', {
 
             const { page, limit, search } = RequestParser.parseQueryParams(request);
             
-
-            context.log(`Parsed... Page: ${page}, Limit: ${limit}, Search Term: ${search}`);
-
             const result = userService.getPaginatedUsers(page, limit, search);
 
             return {

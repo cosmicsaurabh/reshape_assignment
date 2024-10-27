@@ -25,12 +25,12 @@ export const useUserData = () => {
 
   const fetchUsers = async (page, search, cancelTokenSource) => {
     setLoading(true);
+    
     try {
       const response = await axios.get(
-        // `http://localhost:7071/api/getusersreshape?page=${page}&limit=${ItemsPerPage}&search=${search}`,
-        `${process.env.REACT_APP_BACKEND_BASE_URL}?page=${page}&limit=${ItemsPerPage}&search=${search}`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/${process.env.REACT_APP_GET_USERS_ENDPOINT}/${process.env.REACT_APP_AZURE_FUNCTION_NAME}?page=${page}&limit=${ItemsPerPage}&search=${search}`,
 
-        { cancelToken: cancelTokenSource.token }
+        { cancelToken: cancelTokenSource.token },
       );
       // console.log(response.data.users)
       if(response.data.users.length==0){
